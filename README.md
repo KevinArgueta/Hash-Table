@@ -1,80 +1,80 @@
-Hash Table with Mid-Square Hashing and Linear Probing
-Overview
-This project implements a simple hash table in C++ using:
+# Hash Table with Mid-Square Hashing and Linear Probing
 
-Mid-Square Hashing for the hash function.
+## Overview
 
-Linear Probing for collision resolution.
+This C++ project implements a simple hash table using:
 
-Users can interact with the hash table through a console-based menu to insert, search, delete, and display elements.
+- **Mid-Square Hashing** for the hash function  
+- **Linear Probing** for collision resolution  
 
-Files
-main.cpp
-Contains the main() function, which provides a user interface to interact with the hash table. Options include:
+The user interacts with the program via a console menu to insert, search, delete, and display keys in the hash table.
 
-Insert a key
+---
 
-Search for a key
+## Files
 
-Delete a key
+### `hash_table.h`
 
-Output the table contents
+Declares the constants and functions for the hash table:
+- `midSquareHash(int key)`  
+- `linearProbing(int hash, int i)`  
+- `insert(vector<int>& table, int key)`  
+- `search(const vector<int>& table, int key)`  
+- `remove(vector<int>& table, int key)`  
+- `output(const vector<int>& table)`  
 
-Exit the program
+**Constants**:
+- `SIZE = 10` – size of the hash table  
+- `EMPTY = -1` – represents an empty slot  
+- `REMOVED = -2` – represents a deleted slot  
 
-hash_table.h
-Defines constants and declares functions for hashing, probing, and manipulating the hash table:
+---
 
-midSquareHash(int key)
+### `hash_table.cpp`
 
-linearProbing(int hash, int i)
+Implements the logic for:
 
-insert(vector<int>& table, int key)
+- **Hashing**: Mid-square method extracts a middle digit from the squared key  
+- **Insertion**: Uses linear probing to find the next available slot  
+- **Search**: Iteratively probes until key is found or table is exhausted  
+- **Deletion**: Replaces a key with the `REMOVED` marker  
+- **Output**: Displays all slots and their current state (value, EMPTY, or DELETED)  
 
-search(const vector<int>& table, int key)
+---
 
-remove(vector<int>& table, int key)
+### `main.cpp`
 
-output(const vector<int>& table)
+Contains the interactive menu and main program loop:
 
-hash_table.cpp
-Implements the functions declared in hash_table.h.
-Key features:
+```
+Menu:
+1. Insert
+2. Search
+3. Delete
+4. Output
+5. Exit
+```
 
-Hashing: Squares the key, extracts a middle digit, and reduces it to a table index.
+Handles user input and calls the appropriate hash table functions.
 
-Insertion: Uses linear probing to find an open slot.
+---
 
-Deletion: Marks removed keys with a special flag (REMOVED).
+## Compilation and Execution
 
-Search: Scans through probes to find the key or conclude absence.
-
-Output: Prints each index with its value or a status (EMPTY/DELETED).
-
-Constants
-SIZE = 10: Hash table size.
-
-EMPTY = -1: Represents an empty slot.
-
-REMOVED = -2: Represents a deleted slot.
-
-Compilation and Usage
-To Compile:
-bash
-Copy
-Edit
+### Compile
+```bash
 g++ main.cpp hash_table.cpp -o hash_table
-To Run:
-bash
-Copy
-Edit
-./hash_table
-Follow the prompts in the menu to test different hash table operations.
+```
 
-Example Session
-mathematica
-Copy
-Edit
+### Run
+```bash
+./hash_table
+```
+
+---
+
+## Example Interaction
+```
 Menu:
 1. Insert
 2. Search
@@ -83,7 +83,6 @@ Menu:
 5. Exit
 1
 Enter the key to insert: 25
-Element inserted.
 
 Menu:
 4
@@ -91,7 +90,13 @@ Index 0: EMPTY
 Index 1: EMPTY
 Index 2: 25
 ...
-Notes
-Designed for educational purposes to demonstrate basic hashing and probing.
+```
 
-Limited to integer keys and a fixed-size table (10 slots).
+---
+
+## Notes
+
+- The table has a fixed size of 10  
+- Only supports integer keys  
+- Collisions are resolved using simple linear probing  
+- Deleted slots are marked and reused when possible  
